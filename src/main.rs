@@ -1,16 +1,18 @@
 extern crate core;
 
 use crate::config::environment_variables::validate_environment_variables;
+use crate::libs::http::build_headers;
+use crate::libs::logger;
+use crate::libs::on_error::on_error;
+use crate::libs::on_ok::on_ok;
 use tokio;
-use libs::{on_error, on_ok};
-use crate::libs::http::{build_headers};
 
 mod config;
 mod libs;
 
 #[tokio::main]
 async fn main() {
-    libs::logger::init_logger();
+    logger::init_logger();
     validate_environment_variables();
     log::info!("Started at {}", chrono::Utc::now());
 
@@ -25,13 +27,13 @@ async fn main() {
                 .await {
                 Ok(response) => {
                     if response.status() == item.expected_http_code.clone() {
-                        on_ok::on_ok(item.clone(), response);
+                        on_ok(item.clone(), response);
                     } else {
-                        on_error::on_error(item.clone(), None, Some(response));
+                        on_error(item.clone(), None, Some(response));
                     }
                 }
                 Err(error) => {
-                    on_error::on_error(item.clone(), Some(error), None);
+                    on_error(item.clone(), Some(error), None);
                 }
             }
         });
