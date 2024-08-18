@@ -1,0 +1,12 @@
+[package]
+name = "site-monitor"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+log = {version = "0.4.22", features = []}
+log4rs = { version = "1.3.0", features = ["console_appender"] }
+chrono = { version = "0.4.38", features = []}
+reqwest = { version = "0.12", features = ["cookies"] }
+tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros"] }
+latest_user_agent = {version = "0.2.2", features = []}
