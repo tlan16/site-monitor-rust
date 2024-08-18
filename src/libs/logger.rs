@@ -1,9 +1,9 @@
 use std::env;
 
+use log::LevelFilter;
 use log4rs::append::console::ConsoleAppender;
 use log4rs::config::{Appender, Config, Root};
 use log4rs::encode::pattern::PatternEncoder;
-use log::LevelFilter;
 
 fn get_log_level() -> LevelFilter {
     let args: Vec<String> = env::args().collect();

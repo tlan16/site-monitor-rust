@@ -1,5 +1,5 @@
-use validators::prelude::*;
 use validators::models::Host;
+use validators::prelude::*;
 use validators::Validator;
 
 #[derive(Validator)]
@@ -7,7 +7,13 @@ use validators::Validator;
 pub struct TextNotAllowEmpty(pub String);
 
 #[derive(Validator)]
-#[validator(email(comment(Disallow), ip(Allow), local(Disallow), at_least_two_labels(Allow), non_ascii(Allow)))]
+#[validator(email(
+    comment(Disallow),
+    ip(Allow),
+    local(Disallow),
+    at_least_two_labels(Allow),
+    non_ascii(Allow)
+))]
 pub struct EmailWithoutComment {
     pub local_part: String,
     #[allow(dead_code)]

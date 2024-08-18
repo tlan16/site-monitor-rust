@@ -1,6 +1,6 @@
-use reqwest::{Error, Response};
 use crate::config;
 use crate::libs::notify_error::notify_error;
+use reqwest::{Error, Response};
 
 pub fn on_error(watch_list_item: config::watch_list::WatchListItem, error: Option<Error>, response: Option<Response>) {
     let mut message = format!("{:?} {}. Expecting http status code {}).", watch_list_item.http_method, watch_list_item.url, watch_list_item.expected_http_code);

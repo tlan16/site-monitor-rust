@@ -1,8 +1,8 @@
-use std::env;
-use lettre::{Message, SmtpTransport, Transport};
+use crate::config::environment_variables::get_environment_variables;
 use lettre::message::header::ContentType;
 use lettre::transport::smtp::authentication::Credentials;
-use crate::config::environment_variables::get_environment_variables;
+use lettre::{Message, SmtpTransport, Transport};
+use std::env;
 
 pub fn notify_error(subject: String, message: String) {
     let email = Message::builder()

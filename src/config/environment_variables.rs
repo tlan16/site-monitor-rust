@@ -1,8 +1,8 @@
+use crate::libs::validators::{EmailWithoutComment, HostMustAtLeastTwoLabelsAllowPort, TextNotAllowEmpty};
 use dotenvy::dotenv;
 use std::collections::HashMap;
 use std::env;
 use validators::traits::ValidateString;
-use crate::libs::validators::{EmailWithoutComment, HostMustAtLeastTwoLabelsAllowPort, TextNotAllowEmpty};
 
 pub fn get_environment_variables() -> HashMap<String, String> {
     dotenv().expect(".env file not found");
