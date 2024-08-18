@@ -1,8 +1,14 @@
+use std::fmt;
 use std::iter::Iterator;
 
 #[derive(Debug, Clone)]
 pub enum SupportedHttpMethod {
     GET,
+}
+impl fmt::Display for SupportedHttpMethod {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:?}", self)
+    }
 }
 
 #[derive(Debug, Clone)]
@@ -17,17 +23,15 @@ const DFCO2_URLS: [&str; 2] = [
     "https://dfco2.org.au/wp-admin/",
 ];
 
-const FRANK_URLS: [&str; 10] = [
+const FRANK_URLS: [&str; 8] = [
     "https://auth.franklan.com.au/",
     "https://book.franklan.com.au/",
     "https://camera.franklan.com.au/",
-    "https://dashboard.franklan.com.au/",
     "https://httpbin.franklan.com.au/",
     "https://mail.franklan.com.au/",
     "https://torrent.franklan.com.au/",
     "https://traefik.franklan.com.au/",
     "https://vault.franklan.com.au/",
-    "https://proxy.franklan.com.au/",
 ];
 
 fn url_to_watch_list_item(url: &str) -> WatchListItem {
